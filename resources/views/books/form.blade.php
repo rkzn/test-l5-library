@@ -34,7 +34,7 @@
 <div class="form-group{{ $errors->has('pub_year') ? ' has-error' : '' }}">
     {!! Form::label('pub_year', 'Year of Publication:', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-    {!! Form::text('pub_year', null, ['class' => 'form-control']) !!}
+    {!! Form::selectRange('pub_year', 1900, date('Y'), null, ['class' => 'form-control']) !!}
         @if ($errors->has('pub_year'))
             <span class="help-block">
                 <strong>{{ $errors->first('pub_year') }}</strong>

@@ -2,14 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\Author;
 use App\Book;
 use Illuminate\Http\Request;
 
 class BooksController extends Controller
 {
+    public function __construct()
+     {
+//         $this->authorizeResource(Book::class);
+         $this->middleware('auth');
+     }
+
     public function index()
     {
         $books = Book::orderBy('id', 'desc')->paginate();
+        return view('books.index', compact('books'));
+    }
+
+    public function authors()
+    {
+        $authors = Author::orderBy('id', 'desc')->paginate();
+        return view('books.authors', compact('authors'));
+    }
+
+    public function author($id)
+    {
+        $author = Author::where('id', $id)->firstOrFail();
+        $books = $author->books()->paginate();
         return view('books.index', compact('books'));
     }
 
@@ -27,13 +47,14 @@ class BooksController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'isbn' => 'required|max:13',
+            'isbn' => 'required|max:13|min:10',
             'title' => 'required|max:255',
             'subtitle' => 'required|max:255',
-            'pub_year' => 'required|max:4',
+            'pub_year' => 'required|max:4|min:4',
         ]);
 
         Book::create($request->all());
+        Session::flash('flash_message', 'Book successfully added!');
         return redirect('books');
     }
 

@@ -11,13 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', 'HomeController@index');
+Route::get('/books/authors', ['as' => 'books.authors', 'uses' => 'BooksController@authors']);
+Route::get('/books/author/{id}', ['as' => 'books.author', 'uses' => 'BooksController@author'])
+    ->where(['id' => '[0-9]+']);
+Route::resource('books', 'BooksController');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index');
-
-Route::resource('books', 'BooksController');
