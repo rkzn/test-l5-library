@@ -13,12 +13,14 @@ class CreateBooksTable extends Migration
      */
     public function up()
     {
+
+
         Schema::create('books', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->string('isbn', 13)->unique();
             $table->string('title');
-            $table->string('subtitle')->nullable();
+            $table->string('publisher')->nullable();
             $table->unsignedSmallInteger('pub_year')->nullable();
             $table->string('image_url_small')->nullable();
             $table->string('image_url_medium')->nullable();
@@ -27,8 +29,7 @@ class CreateBooksTable extends Migration
 
         Schema::create('authors', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->index('name');
+            $table->string('name')->unique();
         });
 
         Schema::create('book_authors', function (Blueprint $table) {
@@ -37,8 +38,8 @@ class CreateBooksTable extends Migration
             $table->timestamps();
             $table->primary(array('book_id', 'author_id'));
 
-            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
-            $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
+//            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+//            $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
         });
     }
 
@@ -51,8 +52,8 @@ class CreateBooksTable extends Migration
     {
         Schema::table('book_authors', function($table)
         {
-            $table->dropForeign(['book_id']);
-            $table->dropForeign(['author_id']);
+//            $table->dropForeign(['book_id']);
+//            $table->dropForeign(['author_id']);
         });
 
         Schema::dropIfExists('book_authors');

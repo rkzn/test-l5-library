@@ -98,10 +98,14 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li>{{ link_to_route('books.authors', 'Authors') }}</li>
-                        <li>{{ link_to_route('books.index', 'All books') }}</li>
+                        <li>{{ link_to_route('books.index', 'Books') }}</li>
+
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
+
+
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
@@ -109,6 +113,7 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li class="dropdown">
+
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
@@ -129,6 +134,9 @@
                             </li>
                         @endif
                     </ul>
+                    @if (Auth::check())
+                    {{ link_to_route('books.create', 'Add book', [], ['class' => 'btn btn-info btn-sm navbar-btn navbar-right']) }}
+                    @endif
                 </div>
             </div>
         </nav>

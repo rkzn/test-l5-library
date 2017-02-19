@@ -9,7 +9,7 @@ class Book extends Model
     protected $fillable = [
         'isbn',
         'title',
-        'subtitle',
+        'publisher',
         'pub_year',
         'image_url_small',
         'image_url_medium',
@@ -18,6 +18,6 @@ class Book extends Model
 
     public function authors()
     {
-        return $this->belongsToMany('App\Author')->withTimestamps();
+        return $this->belongsToMany('App\Author', 'book_authors')->withTimestamps();
     }
 }

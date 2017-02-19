@@ -4,12 +4,12 @@
 
     <div class="content">
         <div class="title m-b-md">
-            Books
+            Library
         </div>
 
         <div class="links">
             {{ link_to_route('books.index', 'Books') }}
-            {{ link_to_route('books.create', 'Add book') }}
+            {{ link_to_route('books.authors', 'Authors') }}
         </div>
     </div>
 @endsection

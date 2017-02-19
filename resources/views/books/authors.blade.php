@@ -3,7 +3,12 @@
 @section('books.content')
     <h1>Authors</h1>
     @foreach ($authors as $author)
-        <h3>{{ link_to_route('books.author', $author->name, $author->id) }}</h3>
+        <h3>
+            <span class="label label-default">{{ $author->books_count }}</span>
+
+            {{ link_to_route('books.author', $author->name, $author->id) }}
+
+        </h3>
     @endforeach
 
     <!-- pagination -->

@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', function(){ return redirect('/home'); });
+Route::get('/home', 'HomeController@index');
 Route::get('/books/authors', ['as' => 'books.authors', 'uses' => 'BooksController@authors']);
 Route::get('/books/author/{id}', ['as' => 'books.author', 'uses' => 'BooksController@author'])
     ->where(['id' => '[0-9]+']);

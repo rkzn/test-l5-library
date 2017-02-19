@@ -35,7 +35,7 @@ $factory->define(App\Book::class, function (Faker\Generator $faker) {
     return [
         'isbn' => $faker->isbn13,
         'title' => $faker->text(200),
-        'subtitle' => $faker->text(200),
+        'publisher' => $faker->name,
         'pub_year' => $faker->year,
         'image_url_small' => $faker->imageUrl(50,50),
         'image_url_medium' => $faker->imageUrl(250,250),

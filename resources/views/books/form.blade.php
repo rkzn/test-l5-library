@@ -20,13 +20,13 @@
         @endif
     </div>
 </div>
-<div class="form-group{{ $errors->has('subtitle') ? ' has-error' : '' }}">
-    {!! Form::label('subtitle', 'SubTitle:', ['class' => 'col-md-4 control-label']) !!}
+<div class="form-group{{ $errors->has('publisher') ? ' has-error' : '' }}">
+    {!! Form::label('publisher', 'Publisher:', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-    {!! Form::text('subtitle', null, ['class' => 'form-control']) !!}
-        @if ($errors->has('subtitle'))
+    {!! Form::text('publisher', null, ['class' => 'form-control']) !!}
+        @if ($errors->has('publisher'))
             <span class="help-block">
-                <strong>{{ $errors->first('subtitle') }}</strong>
+                <strong>{{ $errors->first('publisher') }}</strong>
             </span>
         @endif
     </div>
