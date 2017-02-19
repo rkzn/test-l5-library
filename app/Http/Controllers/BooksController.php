@@ -14,8 +14,8 @@ class BooksController extends Controller
     protected $validateRules = [
         'isbn'             => 'required|max:13|min:10',
         'title'            => 'required|max:255',
-        'publisher'         => 'required|max:255',
-        'pub_year'         => 'required|max:4|min:4',
+        'publisher'        => 'nullable|max:255',
+        'pub_year'         => 'nullable|max:4|min:4',
         'image_url_small'  => 'nullable|url',
         'image_url_medium' => 'nullable|url',
         'image_url_large'  => 'nullable|url',
@@ -23,8 +23,15 @@ class BooksController extends Controller
 
     public function __construct()
      {
-//         $this->authorizeResource(Book::class);
-         $this->middleware('auth');
+         $this->authorizeResource(Book::class);
+         $this->middleware('auth', [
+             'except' => [
+                 'index',
+                 'authors',
+                 'author',
+                 'show',
+             ],
+         ]);
      }
 
     public function index()
