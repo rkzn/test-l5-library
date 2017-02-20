@@ -9,3 +9,8 @@ Homestead.yaml
 .env
 /composer.phar
 /_ide_helper.php
+.DS_Store
+BX-Book-Ratings.csv
+BX-Books.csv
+BX-CSV-Dump.zip
+BX-Users.csv

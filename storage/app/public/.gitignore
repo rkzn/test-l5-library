@@ -1,2 +1,5 @@
-*
 !.gitignore
+!BX-CSV-Dump.zip
+/BX-Users.csv
+/BX-Books.csv
+/BX-Book-Ratings.csv
