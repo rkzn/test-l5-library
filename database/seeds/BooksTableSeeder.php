@@ -146,7 +146,7 @@ class BooksTableSeeder extends Seeder
             switch ($columnDbName) {
                 case 'title':
                 case 'name':
-                case 'subtitle':
+                case 'publisher':
                     $before = $values[$columnDbName];
                     $encode = mb_detect_encoding($before);
                     $values[$columnDbName] = iconv('UTF-8', $encode.'//IGNORE', $before);
