@@ -9,9 +9,9 @@
 @endsection
 
 @section('books.sidebar')
-    <h1>Control</h1>
+    <h1>Authors</h1>
     <hr>
-    {{ Form::open(['method' => 'DELETE', 'route' => ['books.destroy', $book->id]]) }}
-    <button type="submit" class="btn btn-danger btn-small">Remove</button>
-    {{ Form::close() }}
+    <div class="wrap_book_authors">
+    @include ('books.form_authors', ['book' => $book, 'authors' => $authors])
+    </div>
 @endsection

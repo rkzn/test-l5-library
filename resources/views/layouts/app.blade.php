@@ -146,5 +146,75 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+    <script>
+        $(function() {
+            var wrap_book_authors = {
+                el: $(".wrap_book_authors"),
+                init: function() {
+                    this.bind_form();
+                    this.bind_pagination();
+                    this.bind_authors();
+                    this.el.find('.loading').hide();
+                    console.log('wrap_book_authors.init');
+                },
+                loading: function () {
+                    this.el.find('.loading').show();
+                    this.el.find('form').hide();
+                },
+                bind_form: function() {
+                    wrap_book_authors.el.find('form').submit(function(e){
+                        $action = $(e.target).attr('action');
+                        $data = $(e.target).serialize();
+                        wrap_book_authors.loading();
+                        $.ajax({
+                            type: "POST",
+                            url:  $action,
+                            data: $data,
+                            success: function(data){
+                                wrap_book_authors.el.html(data);
+                                wrap_book_authors.init();
+                            },
+                            error: function(){
+                                alert("failure");
+                            }
+                        });
+                        return false;
+
+                    });
+                },
+                bind_pagination: function () {
+                    wrap_book_authors.el.find(".pagination a").each(function () {
+                        $(this).click(function () {
+                            wrap_book_authors.loading();
+                            $el = $(this);
+                            $.ajax({
+                                type: "GET",
+                                url: $el.attr('href'),
+                                success: function(data){
+                                    wrap_book_authors.el.html(data);
+                                    wrap_book_authors.init();
+                                },
+                                error: function(){
+                                    alert("failure");
+                                }
+                            });
+                            return false;
+                        });
+                    });
+                },
+                bind_authors: function(){
+                    wrap_book_authors.el.find(".nav_authors a").click(function (){
+                        $checkbox = $(this).find('input');
+                        $flag = $checkbox.is(':checked');
+                        console.log('checkbox', $flag);
+                        $checkbox.prop('checked', !$flag).trigger("change");
+                        return false;
+                    });
+                }
+            };
+            wrap_book_authors.init();
+        });
+    </script>
 </body>
 </html>

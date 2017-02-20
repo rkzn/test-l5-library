@@ -46,8 +46,12 @@
 @section('books.sidebar')
     <h1>Control</h1>
     <hr>
+    @if (Auth::check())
     {{ Form::open(['method' => 'DELETE', 'route' => ['books.destroy', $book->id]]) }}
     {{ link_to_route('books.edit', 'Edit', $book->id, ['class' => 'btn btn-primary btn-small']) }}
     <button type="submit" class="btn btn-danger btn-small">Remove</button>
     {{ Form::close() }}
+    @else
+    <p>Login please.</p>
+    @endif
 @endsection
