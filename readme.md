@@ -7,7 +7,7 @@ Library
 * create MySQL database for app and fill parameters in `config/database.php`
 * run `composer install`
 * run `php atrisan migrate`
-* run `php artisane db:seed --class=BooksTableSeeder` (long process. will be load ~200000 books & ~100000 authors)
+* run `php artisan db:seed --class=BooksTableSeeder` (long process. will be load ~200000 books & ~100000 authors)
 * run `php artisan serve`
 * open http://localhost:8000 in your browser
 
